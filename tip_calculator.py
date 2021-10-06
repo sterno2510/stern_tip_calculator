@@ -10,7 +10,7 @@ food_cost = input('What was the bill for your meal (Not including tax?) ')
 print()
 
 # Getting user input for the number of people splitting the bill
-number_of_people = input('How many people are going to split the bill? ')
+number_of_people = int(input('How many people are going to split the bill? '))
 print()
 
 # Getting user input for the tip percentage
@@ -36,8 +36,10 @@ def run_calculator():
     if food_cost > 0 and number_of_people > 0 and tip_percentage >= 0:
         # Calculating the cost of the food with a 10% tax
         tax_total = (food_cost * 1.10)
+        # Calculate tip
+        tip = food_cost * (tip_percentage/100)
         # Calculating the entire bill including user entered tip
-        total_bill = (tax_total * (tip_percentage/100)) + tax_total
+        total_bill = (tax_total + tip)
         # Calculating how much the bill should be per person
         bill_per_person = (total_bill / number_of_people)
         # Printing the results of the tip calculation
@@ -54,7 +56,6 @@ def run_calculator():
 # Checking to see if all user input are numbers and not letters which can't be used in a tip calculator
 if is_num(food_cost) and is_num(number_of_people) and is_num(tip_percentage):
     food_cost = convert_float(food_cost)
-    number_of_people = convert_float(number_of_people)
     tip_percentage = convert_float(tip_percentage)
     run_calculator()
 else:   
